@@ -108,9 +108,3 @@ function get(myArr) {
 
   return bl;
 }
-
-//console.log(get(["b", "o", "o", "k", "e", "e", "p", "e", "r"]), "is the lst");
-//["g", "o", "o", "g", "l", "e"]
-//["q", "u", "e", "s", "t", "i", "o", "n"]
-
-//console.log(s);
