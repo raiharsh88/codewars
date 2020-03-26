@@ -1,39 +1,42 @@
-function decomposer(n) {
-  if (n <= 2) {
-    return null;
-  }
-  var composers = [];
-  let diff = Math.pow(n, 2);
-  var number = n - 1;
-
-  while (diff) {
-    var n2 = Math.pow(number, 2);
-    if (n2 <= diff) {
-      if (composers.indexOf(number) === -1) {
-        composers.push(number);
-        diff = diff - n2;
-
-        number = Math.floor(Math.pow(diff, 1 / 2)) + 5;
-      } else {
-        number = composers[composers.length - 3] - 1;
-        composers.splice(composers.length - 3);
-        diff = n * n;
-
-        composers.forEach(ele => (diff = diff - ele * ele));
+function EvenOdd(points) {
+  var count = 0;
+  var dupes = [...points];
+  var smallest = 1000000;
+  var final = [];
+  for (let point of points) {
+    dupes.splice(0, 1);
+    let diff = 500;
+    dupes.forEach(element => {
+      // if (diff == 0) {
+      //   //console.log("hdhdhdhdhh");
+      //   return false;
+      // }
+      diff = Math.abs(element[0] - point[0]) + Math.abs(point[1] - element[1]);
+      count++;
+      if (diff < smallest) {
+        final[0] = element;
+        final[1] = point;
+        smallest = diff;
       }
-    } else {
-      number--;
-    }
-    //  console.log("d & n", diff, number);
 
-    if (number < 0) {
-      diff = Math.pow(n, 2);
-      number = composers[0] - 1;
-      composers = [];
-    }
+      console.log(element, point, diff);
+    });
+
+    //dupes.push(point);
   }
-
-  return composers.reverse();
+  console.log(count);
+  return final;
 }
 
-console.log(decomposer(50));
+console.log(
+  EvenOdd([
+    [2, 2], // A
+    [2, 8], // B
+    [5, 5], // C
+    [5, 5], // C
+    [6, 3], // D
+    [6, 7], // E
+    [7, 4], // F
+    [7, 9] // G
+  ])
+);
