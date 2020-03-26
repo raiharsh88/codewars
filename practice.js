@@ -15,9 +15,11 @@ function decomposer(n) {
 
         number = Math.floor(Math.pow(diff, 1 / 2)) + 5;
       } else {
-        number = composers[1] - 1;
-        composers.splice(1);
-        diff = Math.pow(n, 2) - Math.pow(n - 1, 2);
+        number = composers[composers.length - 3] - 1;
+        composers.splice(composers.length - 3);
+        diff = n * n;
+
+        composers.forEach(ele => (diff = diff - ele * ele));
       }
     } else {
       number--;
@@ -34,4 +36,4 @@ function decomposer(n) {
   return composers.reverse();
 }
 
-console.log(decomposer(625));
+console.log(decomposer(50));
