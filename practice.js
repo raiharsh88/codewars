@@ -1,42 +1,76 @@
-function EvenOdd(points) {
-  var count = 0;
-  var dupes = [...points];
-  var smallest = 1000000;
-  var final = [];
-  for (let point of points) {
-    dupes.splice(0, 1);
-    let diff = 500;
-    dupes.forEach(element => {
-      // if (diff == 0) {
-      //   //console.log("hdhdhdhdhh");
-      //   return false;
-      // }
-      diff = Math.abs(element[0] - point[0]) + Math.abs(point[1] - element[1]);
-      count++;
-      if (diff < smallest) {
-        final[0] = element;
-        final[1] = point;
-        smallest = diff;
+function formatter(s, q) {
+  s.split("");
+  let out = [];
+  q.forEach(arr => {
+    if (arr[0] === "I") {
+      for (let i = arr[1] - 1; i <= arr[2]; i++) {
+        s[i] = s[i] == "1" ? "0" : "1";
       }
+    } else if (arr[0] === "Q") {
+      out.push(s[arr[1] - 1]);
+    }
+  });
 
-      console.log(element, point, diff);
-    });
-
-    //dupes.push(point);
-  }
-  console.log(count);
-  return final;
+  return out;
 }
 
 console.log(
-  EvenOdd([
-    [2, 2], // A
-    [2, 8], // B
-    [5, 5], // C
-    [5, 5], // C
-    [6, 3], // D
-    [6, 7], // E
-    [7, 4], // F
-    [7, 9] // G
+  formatter("0101111100010110", [
+    ["Q", 16],
+    ["I", 3, 14],
+    ["I", 12, 15],
+    ["I", 2, 15],
+    ["I", 2, 16],
+    ["I", 15, 15],
+    ["I", 2, 5],
+    ["I", 16, 16],
+    ["I", 7, 9],
+    ["I", 5, 8],
+    ["I", 8, 11],
+    ["I", 13, 16],
+    ["I", 9, 12],
+    ["Q", 5],
+    ["I", 7, 9],
+    ["I", 8, 8],
+    ["I", 10, 12],
+    ["Q", 7],
+    ["I", 7, 16],
+    ["I", 12, 14],
+    ["I", 4, 12],
+    ["I", 13, 16],
+    ["Q", 8],
+    ["I", 1, 1],
+    ["I", 8, 12],
+    ["I", 5, 7],
+    ["Q", 11],
+    ["I", 10, 16],
+    ["I", 9, 9],
+    ["I", 11, 11],
+    ["I", 9, 9],
+    ["Q", 10],
+    ["I", 15, 16],
+    ["I", 1, 7],
+    ["I", 8, 15],
+    ["Q", 8],
+    ["I", 10, 16],
+    ["I", 2, 6],
+    ["I", 13, 14],
+    ["I", 11, 13],
+    ["I", 3, 4],
+    ["I", 5, 5],
+    ["I", 9, 9],
+    ["I", 11, 13],
+    ["I", 4, 14],
+    ["I", 15, 16],
+    ["I", 4, 13],
+    ["Q", 10],
+    ["I", 13, 15],
+    ["Q", 14],
+    ["I", 13, 13],
+    ["Q", 1]
   ])
 );
+
+//E - '[\'0\', \'0\', \'1\', \'1\', \'1\', \'0\', \'1\', \'0\', \'1\', \'0\']'
+
+//G - '[\'0\', \'0\', \'1\', \'1\', \'1\', \'0\', \'1\', \'1\', \'0\', \'0\']'
