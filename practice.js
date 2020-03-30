@@ -1,32 +1,84 @@
-function editor(input) {
-  var arr = [];
-  //  console.log("okkk", input);
+function binarySimulation(s, q) {
+  s = s.split("");
+  let out = [];
+  q.forEach((arr, idx) => {
+    if (arr[0] == "Q") {
+      let bit = s[arr[1] - 1];
+      var j = 0;
+      for (let i = 0; i < idx; i++) {
+        if (q[i][0] == "I") {
+          console.log(q[i]);
 
-  input.push([]);
-  input.forEach((e, i) => (arr = arr.concat(e)));
-  input = [...arr];
+          if (q[i][1] <= arr[1] && arr[1] <= q[i][2]) {
+            j++;
+          }
+        }
+      }
+      if (j % 2) {
+        bit = bit == "1" ? "0" : "1";
+      }
+      console.log("----------------------");
 
-  arr = [];
-  for (let n of input) {
-    input.forEach((e, i) => {
-      // console.log(n, e);
+      out.push(bit);
+    }
+  });
 
-      Math.abs(n - e) === 2 ? arr.push([n, e]) : true;
-    });
-  }
-
-  for (let one of arr) {
-    one.sort();
-  }
-
-  arr = arr.filter(((t = {}), a => !(t[a] = a in t)));
-  //arr.sort();
-  return arr;
+  return out;
 }
 
-console.log(editor([1, 3, 4, 6, 5]));
-[
-  [1, 3],
-  [3, 5],
-  [4, 6]
-];
+console.log(
+  binarySimulation("0101111100010110", [
+    ["Q", 16],
+    ["I", 3, 14],
+    ["I", 12, 15],
+    ["I", 2, 15],
+    ["I", 2, 16],
+    ["I", 15, 15],
+    ["I", 2, 5],
+    ["I", 16, 16],
+    ["I", 7, 9],
+    ["I", 5, 8],
+    ["I", 8, 11],
+    ["I", 13, 16],
+    ["I", 9, 12],
+    ["Q", 5],
+    ["I", 7, 9],
+    ["I", 8, 8],
+    ["I", 10, 12],
+    ["Q", 7],
+    ["I", 7, 16],
+    ["I", 12, 14],
+    ["I", 4, 12],
+    ["I", 13, 16],
+    ["Q", 8],
+    ["I", 1, 1],
+    ["I", 8, 12],
+    ["I", 5, 7],
+    ["Q", 11],
+    ["I", 10, 16],
+    ["I", 9, 9],
+    ["I", 11, 11],
+    ["I", 9, 9],
+    ["Q", 10],
+    ["I", 15, 16],
+    ["I", 1, 7],
+    ["I", 8, 15],
+    ["Q", 8],
+    ["I", 10, 16],
+    ["I", 2, 6],
+    ["I", 13, 14],
+    ["I", 11, 13],
+    ["I", 3, 4],
+    ["I", 5, 5],
+    ["I", 9, 9],
+    ["I", 11, 13],
+    ["I", 4, 14],
+    ["I", 15, 16],
+    ["I", 4, 13],
+    ["Q", 10],
+    ["I", 13, 15],
+    ["Q", 14],
+    ["I", 13, 13],
+    ["Q", 1]
+  ])
+);
