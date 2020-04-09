@@ -1,84 +1,45 @@
-function binarySimulation(s, q) {
-  s = s.split("");
-  let out = [];
-  q.forEach((arr, idx) => {
-    if (arr[0] == "Q") {
-      let bit = s[arr[1] - 1];
-      var j = 0;
-      for (let i = 0; i < idx; i++) {
-        if (q[i][0] == "I") {
-          console.log(q[i]);
+function next(n) {
+  let l = n.toString().length;
+  let condition = true;
+  n = parseInt(n) + 1;
+  var subs = n + l;
 
-          if (q[i][1] <= arr[1] && arr[1] <= q[i][2]) {
-            j++;
-          }
-        }
-      }
-      if (j % 2) {
-        bit = bit == "1" ? "0" : "1";
-      }
-      console.log("----------------------");
-
-      out.push(bit);
+  while (!Number.isInteger(n / l)) {
+    let i = 1;
+    while (i <= l) {
+      var num = parseInt(n.toString().slice(0, i));
+      condition = Number.isInteger(num / i) == true ? true : false;
+      i++;
+      if (!condition) break;
     }
-  });
+    n++;
+  }
+  var y = l;
+  var t = 1;
 
-  return out;
+  while (true) {
+    let i = l;
+
+    var x = 0;
+    while (t - y < 1) {
+      x++;
+      t *= 10;
+    }
+    var diff = i - x;
+    while (i - x > 0) {
+      var num = parseInt(n.toString().slice(0, i));
+
+      condition = Number.isInteger(num / i) == true ? true : false;
+      i--;
+      if (!condition) break;
+    }
+    if (condition) break;
+    n += l;
+    y += y;
+    console.log("this", n);
+  }
+
+  return BigInt(n);
 }
 
-console.log(
-  binarySimulation("0101111100010110", [
-    ["Q", 16],
-    ["I", 3, 14],
-    ["I", 12, 15],
-    ["I", 2, 15],
-    ["I", 2, 16],
-    ["I", 15, 15],
-    ["I", 2, 5],
-    ["I", 16, 16],
-    ["I", 7, 9],
-    ["I", 5, 8],
-    ["I", 8, 11],
-    ["I", 13, 16],
-    ["I", 9, 12],
-    ["Q", 5],
-    ["I", 7, 9],
-    ["I", 8, 8],
-    ["I", 10, 12],
-    ["Q", 7],
-    ["I", 7, 16],
-    ["I", 12, 14],
-    ["I", 4, 12],
-    ["I", 13, 16],
-    ["Q", 8],
-    ["I", 1, 1],
-    ["I", 8, 12],
-    ["I", 5, 7],
-    ["Q", 11],
-    ["I", 10, 16],
-    ["I", 9, 9],
-    ["I", 11, 11],
-    ["I", 9, 9],
-    ["Q", 10],
-    ["I", 15, 16],
-    ["I", 1, 7],
-    ["I", 8, 15],
-    ["Q", 8],
-    ["I", 10, 16],
-    ["I", 2, 6],
-    ["I", 13, 14],
-    ["I", 11, 13],
-    ["I", 3, 4],
-    ["I", 5, 5],
-    ["I", 9, 9],
-    ["I", 11, 13],
-    ["I", 4, 14],
-    ["I", 15, 16],
-    ["I", 4, 13],
-    ["Q", 10],
-    ["I", 13, 15],
-    ["Q", 14],
-    ["I", 13, 13],
-    ["Q", 1]
-  ])
-);
+console.log(next(1234n));
