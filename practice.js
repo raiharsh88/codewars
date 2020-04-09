@@ -1,45 +1,50 @@
-function next(n) {
-  let l = n.toString().length;
-  let condition = true;
-  n = parseInt(n) + 1;
-  var subs = n + l;
-
-  while (!Number.isInteger(n / l)) {
-    let i = 1;
-    while (i <= l) {
-      var num = parseInt(n.toString().slice(0, i));
-      condition = Number.isInteger(num / i) == true ? true : false;
-      i++;
-      if (!condition) break;
+function parseBankAccount(text) {
+  text = text.split("\n");
+  text = text.map((line) => {
+    return line.split("");
+  });
+  let str = "";
+  let acNo = "";
+  text[0].forEach((ltr, idx) => {
+    str = "";
+    if (
+      ltr === " " &&
+      text[0][idx + 1] != "_" &&
+      text[1][idx - 1] != "_" &&
+      text[0][idx - 1] != "_"
+    ) {
+      str += text[1][idx] + text[2][idx];
     }
-    n++;
-  }
-  var y = l;
-  var t = 1;
-
-  while (true) {
-    let i = l;
-
-    var x = 0;
-    while (t - y < 1) {
-      x++;
-      t *= 10;
+    if (str == "||") acNo += "1";
+    else {
+      str = "";
+      if (ltr == "_") str += "a";
+      if (text[1][idx + 1] == "|") str += "b";
+      if (text[2][idx + 1] == "|") str += "c";
+      if (text[2][idx] == "_") str += "d";
+      if (text[2][idx - 1] == "|") str += "e";
+      if (text[1][idx - 1] == "|") str += "f";
+      if (text[1][idx] == "_") str += "g";
     }
-    var diff = i - x;
-    while (i - x > 0) {
-      var num = parseInt(n.toString().slice(0, i));
 
-      condition = Number.isInteger(num / i) == true ? true : false;
-      i--;
-      if (!condition) break;
-    }
-    if (condition) break;
-    n += l;
-    y += y;
-    console.log("this", n);
-  }
+    if (str === "abdeg") acNo += "2";
+    else if (str === "abcdg") acNo += "3";
+    else if (str === "bcfg") acNo += "4";
+    else if (str === "acdfg") acNo += "5";
+    else if (str === "acdefg") acNo += "6";
+    else if (str === "abc") acNo += "7";
+    else if (str === "abcdefg") acNo += "8";
+    else if (str === "abcdfg") acNo += "9";
+    else if (str === "abcdef") acNo += "0";
+  });
 
-  return BigInt(n);
+  return parseInt(acNo);
 }
 
-console.log(next(1234n));
+console.log(
+  parseBankAccount(
+    "    _  _     _  _  _  _  _ \n" +
+      "  | _| _||_||_ |_   ||_||_|\n" +
+      "  ||_  _|  | _||_|  ||_| _|\n"
+  )
+);
