@@ -28,14 +28,13 @@
   </head>
   <body>
     <div class="container">
-      <div class="my-box">
-        <div class="row">
-          <div class="col col-lg-3 col-md-6 col-sm-6 text-center">
-            <div class="btn p-5 on">On</div>
-          </div>
+      <div class="row text-center">
+        <div class="col col-lg-3 col-md-2 col-1"></div>
+        <div class="col col-lg-6 col-md-8 col-10 align-self-center">
+          <div class="my-box">
+            <div class="btn on">On</div>
 
-          <div class="col col-lg-3 col-md-6 col-sm-6 text-center">
-            <div class="btn p-5 off">Off</div>
+            <div class="btn off">Off</div>
           </div>
         </div>
       </div>
@@ -53,33 +52,95 @@
 </html>
 
 <style>
-  .my-box {
-    padding: auto;
-    text-align: center;
-    background-color: white;
+  @media only screen and (max-width: 600px) {
+    .my-box {
+      text-align: center;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      border: none;
+      box-shadow: 0 0 20px 5px #888888;
+      overflow: hidden;
+      justify-content: center;
+    }
+
+    .container {
+      margin-top: 0vh;
+    }
+    .on {
+      flex: 1;
+
+      background: rgb(39, 190, 228);
+      margin: 20%;
+      border: none;
+
+      padding: 20px 40px 20px 40px;
+
+      font-size: 5vh;
+      color: white;
+    }
+    .off {
+      flex: 1;
+
+      background: rgb(149, 23, 6);
+      margin: 20%;
+      padding: 20px 40px 20px 40px;
+
+      border: none;
+      font-size: 5vh;
+      color: white;
+    }
   }
 
-  .on {
-    position: relative;
+  @media only screen and (min-width: 601px) {
+    .my-box {
+      text-align: center;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      border: none;
+      box-shadow: 0 0 20px 5px #888888;
+      overflow: hidden;
+      justify-content: center;
+    }
 
-    background: rgb(39, 190, 228);
-    margin: 20%;
-    border: none;
-    padding: 5%;
-  }
-  .off {
-    position: relative;
+    .container {
+      margin-top: 20vh;
+    }
 
-    background: rgb(149, 23, 6);
-    margin: 20%;
-    padding: 5%;
-    border: none;
+    .on {
+      flex: 1;
+
+      background: rgb(39, 190, 228);
+      margin: 20%;
+      border: none;
+
+      padding: 20px 40px 20px 40px;
+
+      font-size: 5vh;
+      color: white;
+    }
+    .off {
+      flex: 1;
+
+      background: rgb(149, 23, 6);
+      margin: 20%;
+      padding: 20px 40px 20px 40px;
+
+      border: none;
+      font-size: 5vh;
+      color: white;
+    }
   }
 
   .on:hover {
     background: rgb(47, 155, 182);
+    color: white;
   }
   .off:hover {
     background: rgb(110, 14, 1);
+    color: white;
   }
 </style>
