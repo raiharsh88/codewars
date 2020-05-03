@@ -1,33 +1,70 @@
-function sumFracts(l) {
-  function gcd(a, b) {
-    const max = Math.max(a, b);
-    const min = Math.min(a, b);
-    console.log(max, min);
+function sudoku(board) {
+  var set = board[0].map((e, i) => (i += 1));
+  var fact = Math.pow(set.length, 1 / 2);
 
-    return max % min === 0 ? min : gcd(max % min, min);
+  console.log(fact);
+
+  // Validationg each column;
+
+  for (let col of board) {
+    let temp = [...set];
+
+    for (let element of col) {
+      if (temp.includes(element)) {
+        temp.splice(temp.indexOf(element), 1);
+      } else {
+        return false;
+      }
+    }
   }
 
-  function add([numer1, denom1], [numer2, denom2]) {
-    const numer = numer1 * denom2 + numer2 * denom1;
-    const denom = denom1 * denom2;
-    const g = gcd(numer, denom);
+  //Validating each row
 
-    return [numer / g, denom / g];
+  for (let i = 0; i < board.length; i++) {
+    let temp = [...set];
+
+    for (let j = 0; j < board.length; j++) {
+      if (temp.includes(board[j][i])) {
+        temp.splice(temp.indexOf(board[j][i]), 1);
+      } else {
+        return false;
+      }
+    }
   }
 
-  if (l.length === 0) return null;
+  let x = 0;
+  for (let m = 0; m < board.length; m += fact) {
+    for (let i = 0; i < board.length; i += fact) {
+      let temp = [...set];
 
-  const [numer, denom] = l.reduce(([numer1, denom1], [numer2, denom2]) =>
-    add([numer1, denom1], [numer2, denom2])
-  );
+      for (let k = m; k < m + fact; k++) {
+        for (let l = i; l < i + fact; l++) {
+          if (temp.includes(board[k][l])) {
+            temp.splice(temp.indexOf(board[k][l]), 1);
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+  }
 
-  return numer % denom === 0 ? numer / denom : [numer, denom];
+  console.log("x is ", x);
+  return true;
 }
 
 console.log(
-  sumFracts([
-    [1, 2],
-    [1, 3],
-    [1, 4],
+  sudoku([
+    [7, 8, 4, 1, 5, 9, 3, 2, 6],
+    [5, 3, 9, 6, 7, 2, 8, 4, 1],
+    [6, 1, 2, 4, 3, 8, 7, 5, 9],
+
+    [9, 2, 8, 7, 1, 5, 4, 6, 3],
+    [3, 5, 7, 8, 4, 6, 1, 9, 2],
+    [4, 6, 1, 9, 2, 3, 5, 8, 7],
+
+    [8, 7, 6, 3, 9, 4, 2, 1, 5],
+    [2, 4, 3, 5, 6, 1, 9, 7, 8],
+    [1, 9, 5, 2, 8, 7, 6, 3, 4],
   ])
 );
