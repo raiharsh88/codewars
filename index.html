@@ -27,16 +27,10 @@
     <title>My Home</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row text-center">
-        <div class="col col-lg-3 col-md-2 col-1"></div>
-        <div class="col col-lg-6 col-md-8 col-10 align-self-center">
-          <div class="my-box">
-            <div class="btn on">On</div>
-
-            <div class="btn off">Off</div>
-          </div>
-        </div>
+    <div class="my-box">
+      <div class="inner-box">
+        <div class="btn on">On</div>
+        <div class="btn off">Off</div>
       </div>
     </div>
   </body>
@@ -54,20 +48,26 @@
 <style>
   @media only screen and (max-width: 600px) {
     .my-box {
-      text-align: center;
-      background-color: white;
+      min-height: 100vh;
+      position: relative;
+    }
+    .inner-box {
       display: flex;
       flex-direction: column;
-      width: 100%;
+
+      vertical-align: middle;
+      width: 70%;
+
+      position: absolute;
+      top: 10%;
+      left: 15%;
+
       border: none;
       box-shadow: 0 0 20px 5px #888888;
       overflow: hidden;
       justify-content: center;
     }
 
-    .container {
-      margin-top: 0vh;
-    }
     .on {
       flex: 1;
 
@@ -95,19 +95,22 @@
 
   @media only screen and (min-width: 601px) {
     .my-box {
-      text-align: center;
-      background-color: white;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .inner-box {
       display: flex;
       flex-direction: row;
-      width: 100%;
+      align-self: center;
+      width: 30%;
+
       border: none;
       box-shadow: 0 0 20px 5px #888888;
       overflow: hidden;
       justify-content: center;
-    }
-
-    .container {
-      margin-top: 20vh;
     }
 
     .on {
