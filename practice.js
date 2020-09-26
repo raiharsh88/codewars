@@ -1,40 +1,37 @@
-function solve(a, b) {
-  var count = 0;
-  for (let x = a; x < b; x++) {
-    if (isPrime(x)) {
-      if (reducer(x)) count += 1;
-    }
-  }
+let weeks = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+let start = 5; //Saturday on 1st Jan 1583
 
-  return count;
+function mostFrequentDays(year) {
+  if (year % 4 == 0) {
+    return [getFirstDay(year), weeks[weeks.indexOf(getFirstDay(year)) + 1]];
+  } else {
+    return [getFirstDay(year)];
+  }
 }
 
-let reducer = function (num) {
-  let coll = [];
-  while (true) {
-    num = num.toString().split("");
-    let acc = 0;
-    for (let i = 0; i < num.length; i++) {
-      acc = acc + Math.pow(parseInt(num[i]), 2);
+function getFirstDay(year) {
+  let day = 2;
+  for (let i = 1583; i < year; i++) {
+    if (i % 100 == 0) {
+      day = i % 400 == 0 ? (day + 2) % 7 : (day + 1) % 7;
+    } else {
+      day = i % 4 == 0 ? (day + 2) % 7 : (day + 1) % 7;
     }
-    num = acc;
-    if (coll.indexOf(acc) != -1) {
-      return false;
-    } else if (num == 1) {
-      return true;
-    }
-    coll.push(acc);
   }
-};
-
-function isPrime(n) {
-  if (n == 1) return false;
-  let sqrt = Math.sqrt(n);
-  for (let i = 2; i < sqrt; i++) {
-    if (n % i == 0) return false;
+  if (day == 0) {
+    day = 7;
   }
 
-  return n > 1;
+  day = (day - 3) % 7;
+  return weeks[day - 1];
 }
-console.log(solve(48, 1651));
-// console.log(isPrime(48));
+
+console.log(mostFrequentDays(1785));
