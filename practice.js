@@ -57,6 +57,6 @@ function main(year) {
 
   return weeks[Math.ceil(day_of_the_week(year, month, day)) - 1];
 }
-console.log(main(1794));
+// console.log(main(1794));
 
 //Mc= 1

@@ -1,9 +1,7 @@
 function solve(arr) {
   arr = arr.sort((a, b) => a - b);
-
   let numberArr = [];
   let frequencyArr = [];
-
   for (let n of arr) {
     if (numberArr.indexOf(n) == -1) {
       numberArr.push(n);
@@ -12,11 +10,9 @@ function solve(arr) {
       frequencyArr[numberArr.indexOf(n)] += 1;
     }
   }
-
   let finalArr = [];
   while (numberArr.length > 0) {
     let idx = frequencyArr.indexOf(Math.max(...frequencyArr));
-
     for (let i = 0; i < Math.max(...frequencyArr); i++) {
       finalArr.push(numberArr[idx]);
     }
