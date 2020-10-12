@@ -1,16 +1,22 @@
-String.prototype.trim = function () {
-  let str = this;
-  while (str.charAt(0) == " ") {
-    str = str.split("").slice(1).join("");
-  }
-  while (str.charAt(str.length - 1) == " ") {
-    str = str
-      .split("")
-      .slice(0, str.length - 1)
-      .join("");
+function pyramid(n) {
+  let array = [];
+  for (let i = 0; i < n; i++) {
+    let str = "";
+    for (let j = 0; j < Math.ceil((n - (i + 1)) / 2); j++) {
+      str += " ";
+    }
+
+    for (let j = 0; j < i + 1; j++) {
+      str += "*";
+    }
+    for (let j = 0; j < Math.floor((n - (i + 1)) / 2); j++) {
+      str += " ";
+    }
+    console.log(i);
+    array.push(str);
   }
 
-  return str;
-};
+  return array;
+}
 
-console.log("test ".trim());
+console.log(pyramid(7));
