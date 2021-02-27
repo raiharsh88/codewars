@@ -1,0 +1,6 @@
+pxt.adafruit.commakecode.adafruit.com*.adafruit.com
+adafruit.com*.adafruit.com
+adafruit.com
+sni.cloudflaressl.com*.adafruit.com
+adafruit.com
+sni.cloudflaressl.comcdn-dev.adafruit.comapt.adafruit.compxt.adafruit.commakecode.adafruit.comwww.forums.adafruit.compodcasts.adafruit.comcdn-dev.adafruit.com

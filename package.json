@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "googleapis": "^39.2.0",
+    "node-fetch": "^2.6.1",
     "puppeteer": "^5.0.0"
   }
 }
